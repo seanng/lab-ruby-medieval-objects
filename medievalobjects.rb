@@ -3,18 +3,20 @@ class Person
 end
 
 class Player < Person
-  def initialize health=20, strength=5, alive=false
+  attr_accessor :health, :strength
+
+  def initialize health=20, strength=5, alive = true
     @health = health
     @strength = strength
-    @alive = true if health > 0
+    @alive = true
   end
 
-  def health
-    @health
-  end
-
-  def strength
-    @strength
+  def alive
+    if health > 0
+      @alive = true
+    else
+      @alive = false
+    end
   end
 
   def take_damage attack_strength
@@ -27,20 +29,25 @@ class Player < Person
 end
 
 class Knight < Player
-  def initialize health=50, strength =7, alive=false
+  def initialize health=50, strength =7, alive=true
     super
   end
 end
+
 
 class Wizard < Player
-  def initialize health=20, strength =75, alive=false
+  def initialize health=20, strength =75, alive=true
     super
   end
 end
 
+
+daryl = Player.new 100, 1
+carmen = Player.new 100, 99
 
 rocky = Player.new
 apollo = Player.new
 
+
 merlin = Wizard.new
-p merlin.attack rocky
+p merlin.first_name
